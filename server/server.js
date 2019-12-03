@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.json());
 console.log(__dirname)
-app.use(express.static(path.join(__dirname, "./client/dist")));
+app.use(express.static(path.join(__dirname, "../client/dist")));
 
 app.get("/test", (req, res) => {
 	res.send("hit route test");
