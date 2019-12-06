@@ -1,18 +1,24 @@
 const express = require("express");
-const path = require("path");
 const app = express();
+const path = require("path");
+const cors = require('cors')
+const db = require('../db/db');
 
-
-
-app.use(express.json());
-console.log(__dirname)
 app.use(express.static(path.join(__dirname, "../client/dist")));
+app.use(express.json());
+app.use(cors());
 
-app.get("/test", (req, res) => {
-	res.send("hit route test");
+app.post("/data", (req, res) => {
+    return db.getData()
+        .then(result => {
+            res.send(result);
+        })
+        .catch(error => {
+            res.send(error);
+        })
 });
 
 const port = 5000;
 app.listen(port, () => {
-	`Listening on port ${port}`;
+    `Listening on port ${port}`;
 });
