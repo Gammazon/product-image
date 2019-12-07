@@ -14,7 +14,7 @@ const Images = (props) => {
                     return (
                         <Image
                         image={image} 
-                        id={index} 
+                        index={index}
                         hoverThumbnail={props.hoverThumbnail} 
                         currentProduct={props.currentProduct}
                         />

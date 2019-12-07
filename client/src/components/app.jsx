@@ -47,8 +47,11 @@ class App extends React.Component {
         });
     }
 
-    hoverThumbnail(id) {
-        console.log(id);
+    hoverThumbnail(event) {
+        let currentImage = `https://gammazon.s3.us-east-2.amazonaws.com/Gammazon/${this.state.currentProduct}/${this.state.currentProduct}-${event.target.id}.jpg`;
+        this.setState({
+            displayImage: currentImage
+        });
     }
 
     render() {
