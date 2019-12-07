@@ -7,8 +7,10 @@ const Main = (props) => {
             <img
                 className="main-image"
                 src={props.displayImage}
-                onMouseEnter={props.hoverMainOn}
-                onMouseLeave={props.hoverMainOff}>
+                onMouseEnter={props.hoverMainOn, props.toggleZoomHover}
+                onMouseLeave={props.hoverMainOff, props.toggleZoomHover}
+                
+                >
             </img>
             <p className="toggle-text">{props.displayText}</p>
     </div>

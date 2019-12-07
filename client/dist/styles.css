@@ -15,23 +15,30 @@
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: flex-start;
-    width: 300px;
-    height: 300px;
-    align-items: flex-start;
+    /* width: 300px;
+    height: 300px; */
+    align-items: center;
     padding: 20px;
 }
 
 .main-image {
-    display: flex;
+    display: block;
     flex-wrap: wrap;
+    align-self: center;
+    /* max-width:300px;
+    max-height:300px;
+    width: auto;
+    height: auto; */
     width: 300px;
     height: 300px;
     padding: 5px;
     padding-bottom: 0px;
     flex-direction: column;
-    align-self: center;
-
 }
+
+/* .main-image:hover {
+    transform: scale(1.5);
+} */
 
 li {
     list-style: none;
@@ -51,6 +58,7 @@ li {
 
 .toggle-text {
     display: flex;
+    /* position: fixed; */
     font-family: "Amazon-Ember";
     justify-content: center;
 }

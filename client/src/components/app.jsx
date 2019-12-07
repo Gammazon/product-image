@@ -12,14 +12,14 @@ class App extends React.Component {
             hoverMain: 0,
             displayImage: "",
             displayText: "Roll over image to zoom in",
-            defaultText: "Roll over image to zoom in",
-            hoverText: "Click image to open expanded view"
+            zoomHover: false
         };
 
         this.defaultImage = this.defaultImage.bind(this);
         this.hoverThumbnail = this.hoverThumbnail.bind(this);
         this.hoverMainOn = this.hoverMainOn.bind(this);
         this.hoverMainOff = this.hoverMainOff.bind(this);
+        this.toggleZoomHover = this.toggleZoomHover.bind(this);
     }
 
     componentDidMount() {
@@ -32,18 +32,15 @@ class App extends React.Component {
         });
     }
 
-
     hoverMainOn() {
-        let hoverText = this.state.hoverText;
         this.setState({
-            displayText: hoverText
+            displayText: "Click image to open expanded view"
         });
     }
 
     hoverMainOff() {
-        let defaultText = this.state.defaultText;
         this.setState({
-            displayText: defaultText
+            displayText: "Roll over image to zoom in"
         });
     }
 
@@ -53,6 +50,16 @@ class App extends React.Component {
             displayImage: currentImage
         });
     }
+
+    toggleZoomHover() {
+        let toggle = !this.state.zoomHover;
+        this.setState({
+            zoomHover: toggle
+        }, () => {
+            console.log(this.state.zoomHover);
+        });
+    }
+
 
     render() {
         let currentProduct = this.state.currentProduct;
@@ -67,6 +74,7 @@ class App extends React.Component {
                 hoverMainOn={this.hoverMainOn} 
                 hoverMainOff={this.hoverMainOff}
                 displayText={this.state.displayText}
+                toggleZoomHover={this.toggleZoomHover}
                  />
             </div>
         );
