@@ -3,16 +3,15 @@ import React from 'react';
 const Main = (props) => {
 
     return (
-            <div>
-        <span className="main-frame">
+        <div className="main-container">
             <img
                 className="main-image"
-                src={`https://gammazon.s3.us-east-2.amazonaws.com/Gammazon/${props.currentProduct}/${props.currentProduct}-1.jpg`}
-                onMouseEnter={props.toggle}
-                onMouseLeave={props.toggle}>
+                src={props.displayImage}
+                onMouseEnter={props.hoverMainOn}
+                onMouseLeave={props.hoverMainOff}>
             </img>
-        </span>
-        </div>
+            <p className="toggle-text">{props.displayText}</p>
+    </div>
     );
 }
 
