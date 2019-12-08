@@ -31,6 +31,7 @@
     height: auto; */
     width: 300px;
     height: 300px;
+    border-radius: 5px;
     padding: 5px;
     padding-bottom: 0px;
     flex-direction: column;
@@ -49,11 +50,20 @@ li {
     flex-direction: column;
     justify-content: space-between;
     float: left;
-    width: 60px;
-    height: 60px;
-    padding: 0.5em;
-    /* padding-bottom: 10px;
-    padding-right: 10px; */
+    width: 50px;
+    height: 50px;
+    overflow: visible;
+    border: solid 1px;
+    border-color: #a2a6ac;
+    border-style: inset;
+    border-radius: 2px;
+}
+
+.zoom {
+    z-index: 10000;
+    border: solid #555555 1px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px 5px #888888;
 }
 
 .toggle-text {

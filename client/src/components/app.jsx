@@ -2,6 +2,7 @@ import React from 'react';
 import axios from "axios";
 import Images from "./Images.jsx";
 import Main from "./Main.jsx";
+import Zoom from "./Zoom.jsx";
 
 class App extends React.Component {
     constructor() {
@@ -33,12 +34,14 @@ class App extends React.Component {
     }
 
     hoverMainOn() {
+        console.log("hovering");
         this.setState({
             displayText: "Click image to open expanded view"
         });
     }
 
     hoverMainOff() {
+        console.log("hovering");
         this.setState({
             displayText: "Roll over image to zoom in"
         });
@@ -55,8 +58,6 @@ class App extends React.Component {
         let toggle = !this.state.zoomHover;
         this.setState({
             zoomHover: toggle
-        }, () => {
-            console.log(this.state.zoomHover);
         });
     }
 
@@ -76,6 +77,8 @@ class App extends React.Component {
                 displayText={this.state.displayText}
                 toggleZoomHover={this.toggleZoomHover}
                  />
+
+                {this.state.zoomHover ? <Zoom displayImage={this.state.displayImage} /> : null}
             </div>
         );
     }
