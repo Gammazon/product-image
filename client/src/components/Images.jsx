@@ -1,19 +1,28 @@
 import React from 'react';
+import Image from './Image.jsx';
 
 const Images = (props) => {
     let array = [];
-    for (let i = 2; i < 5; i++) {
-        array.push(`https://fecproductimages.s3.us-east-2.amazonaws.com/${props.currentProduct}-${i}.jpg`);
+    for (let i = 1; i < 10; i++) {
+        array.push(`https://gammazon.s3.us-east-2.amazonaws.com/Gammazon/${props.currentProduct}/${props.currentProduct}-${i}.jpg`)
     }
-    console.log(array);
+
     return (
-        <div>
-            <img src={`https://fecproductimages.s3.us-east-2.amazonaws.com/${props.currentProduct}-1.jpg`} className='main'></img>
-            {array.map((image, index) => {
-                return <img src={image} key={index} className="display-img"></img>
-            })}
-        </div>    
-    );
+        <span className="thumbnails-container">
+            <ul>
+                {array.map((image, index) => {
+                    return (
+                        <Image
+                        image={image} 
+                        index={index}
+                        hoverThumbnail={props.hoverThumbnail} 
+                        currentProduct={props.currentProduct}
+                        />
+                    );
+                })}
+            </ul>
+        </span>
+    )
 }
 
 export default Images;
