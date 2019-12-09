@@ -1,5 +1,6 @@
 import React from 'react';
 
+// individual thumbnail image
 const Image = (props) => {
     return (
         <li>

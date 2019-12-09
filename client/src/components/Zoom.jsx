@@ -1,6 +1,7 @@
 import React from 'react';
 // import ReactImageMagnify from 'react-image-magnify';
 
+// zoom when main display is hovered over
 const Zoom = (props) => {
     return (
         <div className="zoom-container">
@@ -12,6 +13,7 @@ const Zoom = (props) => {
         </div>
     );
 }
+export default Zoom;
 
 // * attempt without library
 // class Zoom extends React.Component {
@@ -59,5 +61,3 @@ const Zoom = (props) => {
 //         // </figure>
 //     );   
 // }
-
-export default Zoom;

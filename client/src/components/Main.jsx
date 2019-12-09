@@ -1,7 +1,7 @@
 import React from 'react';
 
+// main display image
 const Main = (props) => {
-
     return (
         <div className="main-container">
             <img
@@ -10,7 +10,7 @@ const Main = (props) => {
                 src={props.displayImage}
                 onMouseEnter={props.toggleZoomHover}
                 onMouseLeave={props.toggleZoomHover}
-                onMouseMove={props.moveLens}
+                // onMouseMove={props.moveLens}
                 width="300px"
                 height="300px"
                 >

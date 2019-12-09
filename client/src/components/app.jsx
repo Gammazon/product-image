@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from "axios";
 import Images from "./Images.jsx";
 import Main from "./Main.jsx";
 import Zoom from "./Zoom.jsx";
@@ -13,16 +12,16 @@ class App extends React.Component {
             displayImageID: 1,
             displayImage: "",
             displayText: "Roll over image to zoom in",
-            zoomHover: false,
-            mouseX: 0,
-            mouseY: 0
+            zoomHover: false
+            // mouseX: 0,
+            // mouseY: 0
         };
 
         this.defaultImage = this.defaultImage.bind(this);
         this.hoverThumbnail = this.hoverThumbnail.bind(this);
         this.toggleZoomHover = this.toggleZoomHover.bind(this);
         this.getCursorPosition = this.getCursorPosition.bind(this);
-        this.moveLens = this.moveLens.bind(this);
+        // this.moveLens = this.moveLens.bind(this);
         
     }
 
@@ -30,12 +29,14 @@ class App extends React.Component {
         this.defaultImage();
     }
 
+    // sets default image for main display
     defaultImage() {
         this.setState({
             displayImage: `https://gammazon.s3.us-east-2.amazonaws.com/Gammazon/${this.state.currentProduct}/${this.state.currentProduct}-1.jpg`
         });
     }
 
+    // grabs info of hovered thumnbnail
     hoverThumbnail(event) {
         let currentImage = `https://gammazon.s3.us-east-2.amazonaws.com/Gammazon/${this.state.currentProduct}/${this.state.currentProduct}-${event.target.id}.jpg`;
         this.setState({
@@ -44,7 +45,7 @@ class App extends React.Component {
         });
     }
 
-    // zoom toggle on main image
+    // toggles when hovered on main image for captions and zoom
     toggleZoomHover() {
         let toggle = !this.state.zoomHover;
         this.setState({
@@ -57,28 +58,29 @@ class App extends React.Component {
         });
     }
 
-    getCursorPosition(e) {
-        let x, y = 0;
-        let a = e.target.getBoundingClientRect();
-        x = e.pageX - a.left;
-        y = e.pageY - a.top;
-        console.log(x, y);
-        this.setState({
-            mouseX: x,
-            mouseY: y
-        }, () => {
-            console.log(this.state.mouseX, this.state.mouseY);
-        });
-        return {x: x, y: y};
-    }
+    // ! attempt to create dynamic zoom
+    // getCursorPosition(e) {
+    //     let x, y = 0;
+    //     let a = e.target.getBoundingClientRect();
+    //     x = e.pageX - a.left;
+    //     y = e.pageY - a.top;
+    //     console.log(x, y);
+    //     this.setState({
+    //         mouseX: x,
+    //         mouseY: y
+    //     }, () => {
+    //         console.log(this.state.mouseX, this.state.mouseY);
+    //     });
+    //     return {x: x, y: y};
+    // }
 
-    moveLens(e) {
-        e.preventDefault();
-        let pos = this.getCursorPosition(e);
-        let x = pos.x;
-        let y = pos.y;
+    // moveLens(e) {
+    //     e.preventDefault();
+    //     let pos = this.getCursorPosition(e);
+    //     let x = pos.x;
+    //     let y = pos.y;
 
-    }
+    // }
 
     render() {
         let currentProduct = this.state.currentProduct;
