@@ -8,7 +8,7 @@ const Image = (props) => {
                 key={props.index} 
                 className="thumbnail"
                 id={`${props.index + 1}`}
-                onMouseEnter={props.hoverThumbnail}
+                onMouseEnter={props.hoverThumbnail} 
                 onError={i => i.target.style.display = "none"}
                  />
         </li>

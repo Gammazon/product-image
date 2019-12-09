@@ -6,10 +6,13 @@ const Main = (props) => {
         <div className="main-container">
             <img
                 className="main-image"
+                id="main-image"
                 src={props.displayImage}
-                onMouseEnter={props.hoverMainOn, props.toggleZoomHover}
-                onMouseLeave={props.hoverMainOff, props.toggleZoomHover}
-                
+                onMouseEnter={props.toggleZoomHover}
+                onMouseLeave={props.toggleZoomHover}
+                onMouseMove={props.moveLens}
+                width="300px"
+                height="300px"
                 >
             </img>
             <p className="toggle-text">{props.displayText}</p>

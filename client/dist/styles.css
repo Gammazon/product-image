@@ -4,14 +4,13 @@
 }
 
 .thumbnails-container {
-    display: inline-block;
+    display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
 }
 
 .main-container {
-    display: inline-block;
+    display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: flex-start;
@@ -19,22 +18,24 @@
     height: 300px; */
     align-items: center;
     padding: 20px;
+    text-align: center;
 }
 
 .main-image {
     display: block;
     flex-wrap: wrap;
-    align-self: center;
-    /* max-width:300px;
-    max-height:300px;
+    align-items: center;
+    /* width: 300px; */
+    /* height: 300px; */
+    max-width: 300px;
+    max-height: 300px;
     width: auto;
-    height: auto; */
-    width: 300px;
-    height: 300px;
+    height: auto;
     border-radius: 5px;
     padding: 5px;
     padding-bottom: 0px;
     flex-direction: column;
+    text-align: center;
 }
 
 /* .main-image:hover {
@@ -48,22 +49,44 @@ li {
 .thumbnail {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     float: left;
     width: 50px;
     height: 50px;
-    overflow: visible;
+    /* overflow: visible; */
     border: solid 1px;
     border-color: #a2a6ac;
-    border-style: inset;
+    /* box-shadow: 50px 50px 5px #e77600; */
     border-radius: 2px;
+    margin-bottom: 6px;
 }
 
-.zoom {
+.thumbnail:hover {
+    box-shadow: 0 0 5px #e77600,
+    0 0 5px #e77600;
+    border-color: #e77600;
+}
+
+.zoom-container {
+    position: relative;
     z-index: 10000;
     border: solid #555555 1px;
     border-radius: 5px;
     box-shadow: 5px 5px 5px 5px #888888;
+}
+
+.zoom-lens {
+    position: absolute;
+    border: 1px solid #555555;
+    width: 60px;
+    height: 60px;
+}
+
+.zoom-image {
+    max-width:500px;
+    max-height:500px;
+    height: auto;
+    width: auto;
 }
 
 .toggle-text {

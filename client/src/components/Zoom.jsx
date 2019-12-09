@@ -1,6 +1,19 @@
 import React from 'react';
-import ReactImageMagnify from 'react-image-magnify';
+// import ReactImageMagnify from 'react-image-magnify';
 
+const Zoom = (props) => {
+    return (
+        <div className="zoom-container">
+            <img src={props.displayImage} 
+            className="zoom-image"
+            id="zoom-image"
+            // onMouseOverCapture={props.getCursorPosition}
+            />
+        </div>
+    );
+}
+
+// * attempt without library
 // class Zoom extends React.Component {
 //     constructor(props) {
 //         super(props);
@@ -23,27 +36,28 @@ import ReactImageMagnify from 'react-image-magnify';
     //     this.setState({ backgroundPosition: `${x}% ${y}%` })
     // }
 
-const Zoom = (props) => {
-    return (
-        <div className="zoom">
-            <ReactImageMagnify {...{
-                smallImage: {
-                    src: props.displayImage,
-                    width: 600,
-                    height: 600
-                },
-                largeImage: {
-                    src: props.displayImage,
-                    width: 1200,
-                    height: 1200
-                }
-            }} />
-        </div>
+// * with library
+// const Zoom = (props) => {
+//     return (
+//         <div className="zoom">
+//             <ReactImageMagnify {...{
+//                 smallImage: {
+//                     src: props.displayImage,
+//                     width: 600,
+//                     height: 600
+//                 },
+//                 largeImage: {
+//                     src: props.displayImage,
+//                     width: 1200,
+//                     height: 1200
+//                 }
+//             }} />
+//         </div>
 
-        // <figure onMouseMove={this.handleMouseMove} style={this.state}>
-        //     <img src={this.props.displayImage} />
-        // </figure>
-    );   
-}
+//         // <figure onMouseMove={this.handleMouseMove} style={this.state}>
+//         //     <img src={this.props.displayImage} />
+//         // </figure>
+//     );   
+// }
 
 export default Zoom;
