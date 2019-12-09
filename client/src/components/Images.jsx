@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from './Image.jsx';
 
+// list of thumbnail images
 const Images = (props) => {
     let array = [];
     for (let i = 1; i < 10; i++) {
