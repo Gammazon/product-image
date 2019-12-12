@@ -16,7 +16,7 @@ const Main = (props) => {
                 >
             </img>
             <p className="toggle-text">{props.displayText}</p>
-    </div>
+        </div>
     );
 }
 

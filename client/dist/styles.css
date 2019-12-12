@@ -84,7 +84,7 @@ li {
     justify-content: center;
 }
 
-p {
+.main-container p {
     color: #555555;
     margin-block-start: .5em;
     margin-block-end: 0em;

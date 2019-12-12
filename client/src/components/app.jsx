@@ -20,7 +20,7 @@ class App extends React.Component {
         this.defaultImage = this.defaultImage.bind(this);
         this.hoverThumbnail = this.hoverThumbnail.bind(this);
         this.toggleZoomHover = this.toggleZoomHover.bind(this);
-        this.getCursorPosition = this.getCursorPosition.bind(this);
+        // this.getCursorPosition = this.getCursorPosition.bind(this);
         // this.moveLens = this.moveLens.bind(this);
         
     }
