@@ -59,6 +59,7 @@ li {
 .zoom-container {
     position: relative;
     z-index: 10000;
+    height: 500px;
     border: solid #555555 1px;
     border-radius: 5px;
     box-shadow: 5px 5px 5px 5px #888888;
@@ -66,12 +67,15 @@ li {
 
 .zoom-lens {
     position: absolute;
+    float: left;
     border: 1px solid #555555;
-    width: 60px;
-    height: 60px;
+    width:80px;
+    height: 80px;
 }
 
 .zoom-image {
+    display: flex;
+    align-items: center;
     max-width:500px;
     max-height:500px;
     height: auto;

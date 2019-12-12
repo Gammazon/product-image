@@ -10,12 +10,12 @@ const Main = (props) => {
                 src={props.displayImage}
                 onMouseEnter={props.toggleZoomHover}
                 onMouseLeave={props.toggleZoomHover}
-                // onMouseMove={props.moveLens}
-                width="300px"
-                height="300px"
+                onMouseMove={props.moveLens}
+                onMouseOverCapture={props.getCursorPosition}
                 >
             </img>
             <p className="toggle-text">{props.displayText}</p>
+            <div className="zoom-lens"></div>
         </div>
     );
 }

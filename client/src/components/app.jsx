@@ -2,6 +2,8 @@ import React from 'react';
 import Images from "./Images.jsx";
 import Main from "./Main.jsx";
 import Zoom from "./Zoom.jsx";
+import Lense from "./Lense.jsx";
+import $ from "jquery";
 
 class App extends React.Component {
     constructor() {
@@ -12,16 +14,16 @@ class App extends React.Component {
             displayImageID: 1,
             displayImage: "",
             displayText: "Roll over image to zoom in",
-            zoomHover: false
-            // mouseX: 0,
-            // mouseY: 0
+            zoomHover: false,
+            mouseX: 0,
+            mouseY: 0
         };
 
         this.defaultImage = this.defaultImage.bind(this);
         this.hoverThumbnail = this.hoverThumbnail.bind(this);
         this.toggleZoomHover = this.toggleZoomHover.bind(this);
-        // this.getCursorPosition = this.getCursorPosition.bind(this);
-        // this.moveLens = this.moveLens.bind(this);
+        this.getCursorPosition = this.getCursorPosition.bind(this);
+        this.moveLens = this.moveLens.bind(this);
         
     }
 
@@ -59,28 +61,34 @@ class App extends React.Component {
     }
 
     // ! attempt to create dynamic zoom
-    // getCursorPosition(e) {
-    //     let x, y = 0;
-    //     let a = e.target.getBoundingClientRect();
-    //     x = e.pageX - a.left;
-    //     y = e.pageY - a.top;
-    //     console.log(x, y);
-    //     this.setState({
-    //         mouseX: x,
-    //         mouseY: y
-    //     }, () => {
-    //         console.log(this.state.mouseX, this.state.mouseY);
-    //     });
-    //     return {x: x, y: y};
-    // }
+    getCursorPosition(e) {
+        let x, y = 0;
+        let a = e.target.getBoundingClientRect();
+        x = e.pageX - a.left;
+        y = e.pageY - a.top;
+        console.log(x, y);
+        this.setState({
+            mouseX: x,
+            mouseY: y
+        }, () => {
+            let lensX = this.state.mouseX + 30;
+            let lensY = this.state.mouseY;
+            this.setState({
+                lensX: lensX,
+                lensY: lensY
+            });
+        });
+        // return {x: x, y: y};
+    }
 
-    // moveLens(e) {
-    //     e.preventDefault();
-    //     let pos = this.getCursorPosition(e);
-    //     let x = pos.x;
-    //     let y = pos.y;
-
-    // }
+    moveLens(e) {
+        e.preventDefault();
+        this.getCursorPosition(e);
+        $('.zoom-lens').css({
+            left: this.state.lensX,
+            top: this.state.lensY
+        });
+    }
 
     render() {
         let currentProduct = this.state.currentProduct;
@@ -102,6 +110,10 @@ class App extends React.Component {
                     displayImage={this.state.displayImage}
                     displayImageID={this.state.displayImageID} />
                 : null}
+
+                {this.state.zoomHover ?
+                    <Lense />
+                    : null}
             </div>
         );
     }
