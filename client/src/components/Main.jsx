@@ -1,4 +1,5 @@
 import React from 'react';
+import Zoom from './Zoom.jsx';
 
 // main display image
 const Main = (props) => {
@@ -10,12 +11,18 @@ const Main = (props) => {
                 src={props.displayImage}
                 onMouseEnter={props.toggleZoomHover}
                 onMouseLeave={props.toggleZoomHover}
-                onMouseMove={props.moveLens}
-                onMouseOverCapture={props.getCursorPosition}
+                // onMouseMove={props.moveLens}
+                // onMouseOverCapture={props.getCursorPosition}
                 >
             </img>
             <p className="toggle-text">{props.displayText}</p>
-            <div className="zoom-lens"></div>
+            {props.zoomHover ?
+                <Zoom
+                    displayImage={props.displayImage}
+                    displayImageID={props.displayImageID} />
+                : null}
+
+            {/* <div className="zoom-lens"></div> */}
         </div>
     );
 }

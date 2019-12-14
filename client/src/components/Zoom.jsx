@@ -8,7 +8,7 @@ const Zoom = (props) => {
             <img src={props.displayImage} 
             className="zoom-image"
             id="zoom-image"
-            onMouseOverCapture={props.getCursorPosition}
+            // onMouseOverCapture={props.getCursorPosition}
             />
         </div>
     );
