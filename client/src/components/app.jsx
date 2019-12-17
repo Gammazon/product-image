@@ -1,8 +1,6 @@
 import React from 'react';
 import Images from "./Images.jsx";
 import Main from "./Main.jsx";
-import Zoom from "./Zoom.jsx";
-import Lense from "./Lense.jsx";
 import $ from "jquery";
 
 class App extends React.Component {
@@ -92,7 +90,6 @@ class App extends React.Component {
         let a = e.target.getBoundingClientRect();
         x = e.pageX - a.left;
         y = e.pageY - a.top;
-        // console.log(x, y);
         this.setState({
             mouseX: x,
             mouseY: y
@@ -103,7 +100,6 @@ class App extends React.Component {
                 lensX: lensX,
                 lensY: lensY
             }, () => {
-                // console.log(lensX, lensY);
                 $('.zoom-lens').css({left: lensX, top: lensY})
             })
         })
@@ -112,10 +108,6 @@ class App extends React.Component {
     moveLens(e) {
         e.preventDefault();
         this.getCursorPosition(e);
-        // $('.zoom-lens').css({
-        //     left: this.state.mouseX
-        //     right: this.state.mouseY
-        // });
     }
 
     render() {
