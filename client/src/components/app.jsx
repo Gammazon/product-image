@@ -2,8 +2,8 @@ import React from 'react';
 import Images from "./Images.jsx";
 import Main from "./Main.jsx";
 import Zoom from "./Zoom.jsx";
-// import Lense from "./Lense.jsx";
-// import $ from "jquery";
+import Lense from "./Lense.jsx";
+import $ from "jquery";
 
 class App extends React.Component {
     constructor() {
@@ -13,17 +13,18 @@ class App extends React.Component {
             displayImageID: 1,
             displayImage: "",
             displayText: "Roll over image to zoom in",
-            zoomHover: false
-            // mouseX: 0,
-            // mouseY: 0
+            zoomHover: false,
+            mouseX: 0,
+            mouseY: 0
         };
 
         this.defaultImage = this.defaultImage.bind(this);
         this.hoverThumbnail = this.hoverThumbnail.bind(this);
-        this.toggleZoomHover = this.toggleZoomHover.bind(this);
+        this.zoomHoverOn = this.zoomHoverOn.bind(this);
+        this.zoomHoverOff = this.zoomHoverOff.bind(this);
         this.defaultState - this.defaultState.bind(this);
-        // this.getCursorPosition = this.getCursorPosition.bind(this);
-        // this.moveLens = this.moveLens.bind(this);
+        this.getCursorPosition = this.getCursorPosition.bind(this);
+        this.moveLens = this.moveLens.bind(this);
         
     }
 
@@ -63,47 +64,59 @@ class App extends React.Component {
     }
 
     // toggles when hovered on main image for captions and zoom
-    toggleZoomHover() {
-        let toggle = !this.state.zoomHover;
+    zoomHoverOn(e) {
+        console.log("on!", e.target.id);
         this.setState({
-            zoomHover: toggle
+            zoomHover: true
         }, () => {
-                let caption = this.state.zoomHover ? "Click image to open expanded view" : "Roll over image to zoom in";
-                this.setState({
-                    displayText: caption
-                });
+            this.setState({
+                displayText: "Click image to open expanded view"
+            });
+        });
+    }
+
+    zoomHoverOff(e) {
+        console.log("off!", e.target.id);
+        this.setState({
+            zoomHover: false
+        }, () => {
+            this.setState({
+                displayText: "Roll over image to zoom in"
+            });
         });
     }
 
     // ! attempt to create dynamic zoom
-    // getCursorPosition(e) {
-    //     let x, y = 0;
-    //     let a = e.target.getBoundingClientRect();
-    //     x = e.pageX - a.left;
-    //     y = e.pageY - a.top;
-    //     console.log(x, y);
-    //     this.setState({
-    //         mouseX: x,
-    //         mouseY: y
-        // }, () => {
-        //     let lensX = this.state.mouseX + 30;
-        //     let lensY = this.state.mouseY;
-        //     this.setState({
-        //         lensX: lensX,
-        //         lensY: lensY
-        //     });
-        // });
-        // return {x: x, y: y};
-    // }
+    getCursorPosition(e) {
+        let x, y = 0;
+        let a = e.target.getBoundingClientRect();
+        x = e.pageX - a.left;
+        y = e.pageY - a.top;
+        // console.log(x, y);
+        this.setState({
+            mouseX: x,
+            mouseY: y
+        }, () => {
+            let lensX = x - 50;
+            let lensY = y - 50;
+            this.setState({
+                lensX: lensX,
+                lensY: lensY
+            }, () => {
+                // console.log(lensX, lensY);
+                $('.zoom-lens').css({left: lensX, top: lensY})
+            })
+        })
+    }
 
-    // moveLens(e) {
-    //     e.preventDefault();
-    //     this.getCursorPosition(e);
-    //     $('.zoom-lens').css({
-    //         left: this.state.lensX,
-    //         top: this.state.lensY
-    //     });
-    // }
+    moveLens(e) {
+        e.preventDefault();
+        this.getCursorPosition(e);
+        // $('.zoom-lens').css({
+        //     left: this.state.mouseX
+        //     right: this.state.mouseY
+        // });
+    }
 
     render() {
         let currentProduct = this.state.currentProduct;
@@ -116,11 +129,12 @@ class App extends React.Component {
                 <Main currentProduct={currentProduct} 
                 displayImage={this.state.displayImage}
                 displayText={this.state.displayText}
-                toggleZoomHover={this.toggleZoomHover}
+                zoomHoverOn={this.zoomHoverOn}
+                zoomHoverOff={this.zoomHoverOff}
                 displayImage={this.state.displayImage}
                 displayImageID={this.state.displayImageID}
                 zoomHover={this.state.zoomHover}
-                // moveLens={this.moveLens}                
+                moveLens={this.moveLens}                
                  />
 
                 {/* {this.state.zoomHover ? 
