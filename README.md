@@ -1,13 +1,16 @@
-# Project Name
+# Gammazon - Display
 
-> Project description
+> Product display component of Amazon Product Page replica
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/Gammazon/feature-carousel
+  - https://github.com/Gammazon/feature-display
+  - https://github.com/Gammazon/Feature-Bottom-bar
+  - https://github.com/Gammazon/Feature-Top-Bar
+  - https://github.com/Gammazon/product-description
+  - https://github.com/Gammazon/featureReviews
+  - https://github.com/Gammazon/BenProxy
 
 ## Table of Contents
 
@@ -15,9 +18,11 @@
 1. [Requirements](#requirements)
 1. [Development](#development)
 
+![Component](../display.gif)
+
 ## Usage
 
-> Some usage instructions
+> Hover over thumbnails to toggle between product images. Hover over main image to magnify image and toggle text on the bottom of the main image.
 
 ## Requirements
 
