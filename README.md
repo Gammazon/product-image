@@ -1,4 +1,4 @@
-# Gammazon - Carousel Component
+# Gammazon - Product Display Component
 Gammazon is an Amazon Product Page replica. This component consists of the main product display of Gammazon.
 
 ## In Action
