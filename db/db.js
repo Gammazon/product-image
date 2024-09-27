@@ -1,13 +1,22 @@
 var mysql = require("mysql");
 let config = require("./config");
 
+// * for local
+// const con = mysql.createConnection({
+//     host: "localhost",
+//     user: "root",
+//     password: config.TOKEN.root,
+//     database: "gammazon"
+// });
+
+// * for deploy
 const con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: config.TOKEN.pw,
+    host: "gammazon.c9ljtzalkrkv.us-east-2.rds.amazonaws.com",
+    user: "admin",
+    password: config.TOKEN.admin,
+    port: 3306,
     database: "gammazon"
 });
-
 con.connect(() => {
     console.log(`Connected to database!`);
 });

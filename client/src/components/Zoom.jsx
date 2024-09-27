@@ -3,16 +3,30 @@ import React from 'react';
 
 // zoom when main display is hovered over
 const Zoom = (props) => {
+    var sectionStyle = {
+        backgroundImage: `url(${props.displayImage})`
+    };
     return (
-        <div className="zoom-container">
-            <img src={props.displayImage} 
+        <div className="zoom-container" onMouseOverCapture={props.getCursorPosition}>
+            <section style={sectionStyle}
             className="zoom-image"
-            id="zoom-image"
-            // onMouseOverCapture={props.getCursorPosition}
-            />
+            id="zoom-image">
+            </section>
         </div>
     );
 }
+// const Zoom = (props) => {
+//     return (
+//         <div className="zoom-container">
+//             <img src={props.displayImage} 
+//             className="zoom-image"
+//             id="zoom-image"
+//             onMouseOverCapture={props.getCursorPosition}
+//             />
+//         </div>
+//     );
+// }
+
 export default Zoom;
 
 // * attempt without library

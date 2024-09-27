@@ -1,38 +1,54 @@
 import React from 'react';
 import Images from "./Images.jsx";
 import Main from "./Main.jsx";
-import Zoom from "./Zoom.jsx";
+import $ from "jquery";
 
 class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            currentProduct: 2,
-            defaultMain: 1,
+            currentProduct: 1,
             displayImageID: 1,
             displayImage: "",
             displayText: "Roll over image to zoom in",
-            zoomHover: false
-            // mouseX: 0,
-            // mouseY: 0
+            zoomHover: false,
+            mouseX: 0,
+            mouseY: 0
         };
 
         this.defaultImage = this.defaultImage.bind(this);
         this.hoverThumbnail = this.hoverThumbnail.bind(this);
-        this.toggleZoomHover = this.toggleZoomHover.bind(this);
+        this.zoomHoverOn = this.zoomHoverOn.bind(this);
+        this.zoomHoverOff = this.zoomHoverOff.bind(this);
+        this.defaultState - this.defaultState.bind(this);
         this.getCursorPosition = this.getCursorPosition.bind(this);
-        // this.moveLens = this.moveLens.bind(this);
+        this.moveLens = this.moveLens.bind(this);
         
     }
 
     componentDidMount() {
-        this.defaultImage();
+        let idText = window.location.search;
+        if (idText) {
+            let croppedId = idText.substring((idText.indexOf('=') + 1));
+            croppedId = Number(croppedId);
+            this.defaultState(croppedId);
+        } else {
+            this.defaultState();
+        }
     }
 
-    // sets default image for main display
-    defaultImage() {
+    defaultState(id = 1) {
         this.setState({
-            displayImage: `https://gammazon.s3.us-east-2.amazonaws.com/Gammazon/${this.state.currentProduct}/${this.state.currentProduct}-1.jpg`
+            currentProduct: id
+        }, () => {
+            this.defaultImage(id);
+        });
+    }
+    
+    // sets default image for main display
+    defaultImage(id = this.state.currentProduct) {
+        this.setState({
+            displayImage: `https://gammazon.s3.us-east-2.amazonaws.com/Gammazon/${id}/${id}-1.jpg`
         });
     }
 
@@ -46,41 +62,53 @@ class App extends React.Component {
     }
 
     // toggles when hovered on main image for captions and zoom
-    toggleZoomHover() {
-        let toggle = !this.state.zoomHover;
+    zoomHoverOn(e) {
+        console.log("on!", e.target.id);
         this.setState({
-            zoomHover: toggle
+            zoomHover: true
         }, () => {
-                let caption = this.state.zoomHover ? "Click image to open expanded view" : "Roll over image to zoom in";
-                this.setState({
-                    displayText: caption
-                });
+            this.setState({
+                displayText: "Click image to open expanded view"
+            });
+        });
+    }
+
+    zoomHoverOff(e) {
+        console.log("off!", e.target.id);
+        this.setState({
+            zoomHover: false
+        }, () => {
+            this.setState({
+                displayText: "Roll over image to zoom in"
+            });
         });
     }
 
     // ! attempt to create dynamic zoom
-    // getCursorPosition(e) {
-    //     let x, y = 0;
-    //     let a = e.target.getBoundingClientRect();
-    //     x = e.pageX - a.left;
-    //     y = e.pageY - a.top;
-    //     console.log(x, y);
-    //     this.setState({
-    //         mouseX: x,
-    //         mouseY: y
-    //     }, () => {
-    //         console.log(this.state.mouseX, this.state.mouseY);
-    //     });
-    //     return {x: x, y: y};
-    // }
+    getCursorPosition(e) {
+        let x, y = 0;
+        let a = e.target.getBoundingClientRect();
+        x = e.pageX - a.left;
+        y = e.pageY - a.top;
+        this.setState({
+            mouseX: x,
+            mouseY: y
+        }, () => {
+            let lensX = x - 50;
+            let lensY = y - 50;
+            this.setState({
+                lensX: lensX,
+                lensY: lensY
+            }, () => {
+                $('.zoom-lens').css({left: lensX, top: lensY})
+            })
+        })
+    }
 
-    // moveLens(e) {
-    //     e.preventDefault();
-    //     let pos = this.getCursorPosition(e);
-    //     let x = pos.x;
-    //     let y = pos.y;
-
-    // }
+    moveLens(e) {
+        e.preventDefault();
+        this.getCursorPosition(e);
+    }
 
     render() {
         let currentProduct = this.state.currentProduct;
@@ -93,15 +121,23 @@ class App extends React.Component {
                 <Main currentProduct={currentProduct} 
                 displayImage={this.state.displayImage}
                 displayText={this.state.displayText}
-                toggleZoomHover={this.toggleZoomHover}
+                zoomHoverOn={this.zoomHoverOn}
+                zoomHoverOff={this.zoomHoverOff}
+                displayImage={this.state.displayImage}
+                displayImageID={this.state.displayImageID}
+                zoomHover={this.state.zoomHover}
                 moveLens={this.moveLens}                
                  />
 
-                {this.state.zoomHover ? 
+                {/* {this.state.zoomHover ? 
                     <Zoom 
                     displayImage={this.state.displayImage}
                     displayImageID={this.state.displayImageID} />
-                : null}
+                : null} */}
+
+                {/* {this.state.zoomHover ?
+                    <Lense />
+                    : null} */}
             </div>
         );
     }
